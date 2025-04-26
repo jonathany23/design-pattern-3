@@ -30,10 +30,10 @@ public abstract class Account {
   }
 
   public void withdraw(double amount) {
-    if (amount > this.balance) {
-      throw new IllegalArgumentException("Insufficient funds");
-    }
     double fee = calculateWithdrawalFee(amount);
     this.balance -= (amount + fee);
+    if (this.balance < 0){
+      this.balance = 0.0;
+    }
   }
 }
